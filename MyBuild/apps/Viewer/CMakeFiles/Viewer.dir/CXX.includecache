@@ -6,14 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/xieyang/workspace/openMVS/MyBuild/apps/Viewer/cotire/Viewer_CXX_prefix.cxx
-/home/xieyang/workspace/openMVS/apps/Viewer/Common.h
--
-
-/home/xieyang/workspace/openMVS/MyBuild/apps/Viewer/cotire/Viewer_CXX_prefix.hxx
-/home/xieyang/workspace/openMVS/MyBuild/apps/Viewer/cotire/Viewer_CXX_prefix.cxx
--
-
 /home/xieyang/workspace/openMVS/apps/Viewer/Camera.cpp
 Common.h
 /home/xieyang/workspace/openMVS/apps/Viewer/Common.h

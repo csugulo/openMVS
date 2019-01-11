@@ -10,14 +10,6 @@
 ../Common/Common.h
 ../libs/Math/Common/Common.h
 
-/home/xieyang/workspace/openMVS/MyBuild/libs/Math/cotire/Math_CXX_prefix.cxx
-/home/xieyang/workspace/openMVS/libs/Math/Common.h
--
-
-/home/xieyang/workspace/openMVS/MyBuild/libs/Math/cotire/Math_CXX_prefix.hxx
-/home/xieyang/workspace/openMVS/MyBuild/libs/Math/cotire/Math_CXX_prefix.cxx
--
-
 /home/xieyang/workspace/openMVS/libs/Common/AABB.h
 AABB.inl
 /home/xieyang/workspace/openMVS/libs/Common/AABB.inl

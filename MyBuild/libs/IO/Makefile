@@ -89,17 +89,6 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
@@ -121,6 +110,17 @@ install/local: preinstall
 install/local/fast: install/local
 
 .PHONY : install/local/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -153,21 +153,6 @@ preinstall/fast:
 depend:
 	cd /home/xieyang/workspace/openMVS/MyBuild && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
-
-# Convenience name for target.
-libs/IO/CMakeFiles/IO_pch.dir/rule:
-	cd /home/xieyang/workspace/openMVS/MyBuild && $(MAKE) -f CMakeFiles/Makefile2 libs/IO/CMakeFiles/IO_pch.dir/rule
-.PHONY : libs/IO/CMakeFiles/IO_pch.dir/rule
-
-# Convenience name for target.
-IO_pch: libs/IO/CMakeFiles/IO_pch.dir/rule
-
-.PHONY : IO_pch
-
-# fast build rule for target.
-IO_pch/fast:
-	cd /home/xieyang/workspace/openMVS/MyBuild && $(MAKE) -f libs/IO/CMakeFiles/IO_pch.dir/build.make libs/IO/CMakeFiles/IO_pch.dir/build
-.PHONY : IO_pch/fast
 
 # Convenience name for target.
 libs/IO/CMakeFiles/IO.dir/rule:
@@ -571,11 +556,10 @@ help:
 	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... edit_cache"
-	@echo "... IO_pch"
 	@echo "... IO"
 	@echo "... install/strip"
 	@echo "... install/local"
+	@echo "... edit_cache"
 	@echo "... Common.o"
 	@echo "... Common.i"
 	@echo "... Common.s"

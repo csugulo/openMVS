@@ -57,24 +57,9 @@ include apps/Viewer/CMakeFiles/Viewer.dir/progress.make
 # Include the compile flags for this target's objects.
 include apps/Viewer/CMakeFiles/Viewer.dir/flags.make
 
-apps/Viewer/cotire/Viewer_CXX_prefix.hxx.gch: apps/Viewer/cotire/Viewer_CXX_prefix.hxx
-apps/Viewer/cotire/Viewer_CXX_prefix.hxx.gch: /usr/bin/c++
-apps/Viewer/cotire/Viewer_CXX_prefix.hxx.gch: apps/Viewer/cotire/Viewer_CXX_prefix.hxx
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX precompiled header apps/Viewer/cotire/Viewer_CXX_prefix.hxx.gch"
-	cd /home/xieyang/workspace/openMVS/apps/Viewer && /usr/bin/cmake -DCOTIRE_BUILD_TYPE:STRING=Release -DCOTIRE_VERBOSE:BOOL=$(VERBOSE) -P /home/xieyang/workspace/openMVS/build/Cotire.cmake precompile /home/xieyang/workspace/openMVS/MyBuild/apps/Viewer/Viewer_CXX_Cotire.cmake /home/xieyang/workspace/openMVS/MyBuild/apps/Viewer/cotire/Viewer_CXX_prefix.hxx /home/xieyang/workspace/openMVS/MyBuild/apps/Viewer/cotire/Viewer_CXX_prefix.hxx.gch /home/xieyang/workspace/openMVS/apps/Viewer/Common.cpp
-
-apps/Viewer/cotire/Viewer_CXX_prefix.hxx: apps/Viewer/cotire/Viewer_CXX_prefix.cxx
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating CXX prefix header apps/Viewer/cotire/Viewer_CXX_prefix.hxx"
-	/usr/bin/cmake -DCOTIRE_BUILD_TYPE:STRING=Release -DCOTIRE_VERBOSE:BOOL=$(VERBOSE) -P /home/xieyang/workspace/openMVS/build/Cotire.cmake combine /home/xieyang/workspace/openMVS/MyBuild/apps/Viewer/Viewer_CXX_Cotire.cmake /home/xieyang/workspace/openMVS/MyBuild/apps/Viewer/cotire/Viewer_CXX_prefix.hxx /home/xieyang/workspace/openMVS/MyBuild/apps/Viewer/cotire/Viewer_CXX_prefix.cxx
-
-apps/Viewer/cotire/Viewer_CXX_prefix.cxx: ../apps/Viewer/Common.h
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating CXX prefix source apps/Viewer/cotire/Viewer_CXX_prefix.cxx"
-	/usr/bin/cmake -DCOTIRE_BUILD_TYPE:STRING=Release -DCOTIRE_VERBOSE:BOOL=$(VERBOSE) -P /home/xieyang/workspace/openMVS/build/Cotire.cmake combine /home/xieyang/workspace/openMVS/MyBuild/apps/Viewer/Viewer_CXX_Cotire.cmake /home/xieyang/workspace/openMVS/MyBuild/apps/Viewer/cotire/Viewer_CXX_prefix.cxx /home/xieyang/workspace/openMVS/apps/Viewer/Common.h
-
 apps/Viewer/CMakeFiles/Viewer.dir/Common.cpp.o: apps/Viewer/CMakeFiles/Viewer.dir/flags.make
 apps/Viewer/CMakeFiles/Viewer.dir/Common.cpp.o: ../apps/Viewer/Common.cpp
-apps/Viewer/CMakeFiles/Viewer.dir/Common.cpp.o: apps/Viewer/cotire/Viewer_CXX_prefix.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object apps/Viewer/CMakeFiles/Viewer.dir/Common.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object apps/Viewer/CMakeFiles/Viewer.dir/Common.cpp.o"
 	cd /home/xieyang/workspace/openMVS/MyBuild/apps/Viewer && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Viewer.dir/Common.cpp.o -c /home/xieyang/workspace/openMVS/apps/Viewer/Common.cpp
 
 apps/Viewer/CMakeFiles/Viewer.dir/Common.cpp.i: cmake_force
@@ -98,8 +83,7 @@ apps/Viewer/CMakeFiles/Viewer.dir/Common.cpp.o.provides.build: apps/Viewer/CMake
 
 apps/Viewer/CMakeFiles/Viewer.dir/Image.cpp.o: apps/Viewer/CMakeFiles/Viewer.dir/flags.make
 apps/Viewer/CMakeFiles/Viewer.dir/Image.cpp.o: ../apps/Viewer/Image.cpp
-apps/Viewer/CMakeFiles/Viewer.dir/Image.cpp.o: apps/Viewer/cotire/Viewer_CXX_prefix.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object apps/Viewer/CMakeFiles/Viewer.dir/Image.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object apps/Viewer/CMakeFiles/Viewer.dir/Image.cpp.o"
 	cd /home/xieyang/workspace/openMVS/MyBuild/apps/Viewer && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Viewer.dir/Image.cpp.o -c /home/xieyang/workspace/openMVS/apps/Viewer/Image.cpp
 
 apps/Viewer/CMakeFiles/Viewer.dir/Image.cpp.i: cmake_force
@@ -123,8 +107,7 @@ apps/Viewer/CMakeFiles/Viewer.dir/Image.cpp.o.provides.build: apps/Viewer/CMakeF
 
 apps/Viewer/CMakeFiles/Viewer.dir/Camera.cpp.o: apps/Viewer/CMakeFiles/Viewer.dir/flags.make
 apps/Viewer/CMakeFiles/Viewer.dir/Camera.cpp.o: ../apps/Viewer/Camera.cpp
-apps/Viewer/CMakeFiles/Viewer.dir/Camera.cpp.o: apps/Viewer/cotire/Viewer_CXX_prefix.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object apps/Viewer/CMakeFiles/Viewer.dir/Camera.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object apps/Viewer/CMakeFiles/Viewer.dir/Camera.cpp.o"
 	cd /home/xieyang/workspace/openMVS/MyBuild/apps/Viewer && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Viewer.dir/Camera.cpp.o -c /home/xieyang/workspace/openMVS/apps/Viewer/Camera.cpp
 
 apps/Viewer/CMakeFiles/Viewer.dir/Camera.cpp.i: cmake_force
@@ -148,8 +131,7 @@ apps/Viewer/CMakeFiles/Viewer.dir/Camera.cpp.o.provides.build: apps/Viewer/CMake
 
 apps/Viewer/CMakeFiles/Viewer.dir/Window.cpp.o: apps/Viewer/CMakeFiles/Viewer.dir/flags.make
 apps/Viewer/CMakeFiles/Viewer.dir/Window.cpp.o: ../apps/Viewer/Window.cpp
-apps/Viewer/CMakeFiles/Viewer.dir/Window.cpp.o: apps/Viewer/cotire/Viewer_CXX_prefix.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object apps/Viewer/CMakeFiles/Viewer.dir/Window.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object apps/Viewer/CMakeFiles/Viewer.dir/Window.cpp.o"
 	cd /home/xieyang/workspace/openMVS/MyBuild/apps/Viewer && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Viewer.dir/Window.cpp.o -c /home/xieyang/workspace/openMVS/apps/Viewer/Window.cpp
 
 apps/Viewer/CMakeFiles/Viewer.dir/Window.cpp.i: cmake_force
@@ -173,8 +155,7 @@ apps/Viewer/CMakeFiles/Viewer.dir/Window.cpp.o.provides.build: apps/Viewer/CMake
 
 apps/Viewer/CMakeFiles/Viewer.dir/Scene.cpp.o: apps/Viewer/CMakeFiles/Viewer.dir/flags.make
 apps/Viewer/CMakeFiles/Viewer.dir/Scene.cpp.o: ../apps/Viewer/Scene.cpp
-apps/Viewer/CMakeFiles/Viewer.dir/Scene.cpp.o: apps/Viewer/cotire/Viewer_CXX_prefix.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object apps/Viewer/CMakeFiles/Viewer.dir/Scene.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object apps/Viewer/CMakeFiles/Viewer.dir/Scene.cpp.o"
 	cd /home/xieyang/workspace/openMVS/MyBuild/apps/Viewer && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Viewer.dir/Scene.cpp.o -c /home/xieyang/workspace/openMVS/apps/Viewer/Scene.cpp
 
 apps/Viewer/CMakeFiles/Viewer.dir/Scene.cpp.i: cmake_force
@@ -198,8 +179,7 @@ apps/Viewer/CMakeFiles/Viewer.dir/Scene.cpp.o.provides.build: apps/Viewer/CMakeF
 
 apps/Viewer/CMakeFiles/Viewer.dir/Viewer.cpp.o: apps/Viewer/CMakeFiles/Viewer.dir/flags.make
 apps/Viewer/CMakeFiles/Viewer.dir/Viewer.cpp.o: ../apps/Viewer/Viewer.cpp
-apps/Viewer/CMakeFiles/Viewer.dir/Viewer.cpp.o: apps/Viewer/cotire/Viewer_CXX_prefix.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object apps/Viewer/CMakeFiles/Viewer.dir/Viewer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object apps/Viewer/CMakeFiles/Viewer.dir/Viewer.cpp.o"
 	cd /home/xieyang/workspace/openMVS/MyBuild/apps/Viewer && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Viewer.dir/Viewer.cpp.o -c /home/xieyang/workspace/openMVS/apps/Viewer/Viewer.cpp
 
 apps/Viewer/CMakeFiles/Viewer.dir/Viewer.cpp.i: cmake_force
@@ -287,7 +267,7 @@ bin/Viewer: /usr/lib/x86_64-linux-gnu/libboost_system.so
 bin/Viewer: /usr/lib/x86_64-linux-gnu/libpthread.so
 bin/Viewer: /usr/lib/x86_64-linux-gnu/libmpfr.so
 bin/Viewer: apps/Viewer/CMakeFiles/Viewer.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable ../../bin/Viewer"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable ../../bin/Viewer"
 	cd /home/xieyang/workspace/openMVS/MyBuild/apps/Viewer && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Viewer.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -308,9 +288,7 @@ apps/Viewer/CMakeFiles/Viewer.dir/clean:
 	cd /home/xieyang/workspace/openMVS/MyBuild/apps/Viewer && $(CMAKE_COMMAND) -P CMakeFiles/Viewer.dir/cmake_clean.cmake
 .PHONY : apps/Viewer/CMakeFiles/Viewer.dir/clean
 
-apps/Viewer/CMakeFiles/Viewer.dir/depend: apps/Viewer/cotire/Viewer_CXX_prefix.hxx.gch
-apps/Viewer/CMakeFiles/Viewer.dir/depend: apps/Viewer/cotire/Viewer_CXX_prefix.hxx
-apps/Viewer/CMakeFiles/Viewer.dir/depend: apps/Viewer/cotire/Viewer_CXX_prefix.cxx
+apps/Viewer/CMakeFiles/Viewer.dir/depend:
 	cd /home/xieyang/workspace/openMVS/MyBuild && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/xieyang/workspace/openMVS /home/xieyang/workspace/openMVS/apps/Viewer /home/xieyang/workspace/openMVS/MyBuild /home/xieyang/workspace/openMVS/MyBuild/apps/Viewer /home/xieyang/workspace/openMVS/MyBuild/apps/Viewer/CMakeFiles/Viewer.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : apps/Viewer/CMakeFiles/Viewer.dir/depend
 

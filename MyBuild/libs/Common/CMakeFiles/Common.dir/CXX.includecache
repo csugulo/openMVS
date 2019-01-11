@@ -6,14 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/xieyang/workspace/openMVS/MyBuild/libs/Common/cotire/Common_CXX_prefix.cxx
-/home/xieyang/workspace/openMVS/libs/Common/Common.h
--
-
-/home/xieyang/workspace/openMVS/MyBuild/libs/Common/cotire/Common_CXX_prefix.hxx
-/home/xieyang/workspace/openMVS/MyBuild/libs/Common/cotire/Common_CXX_prefix.cxx
--
-
 /home/xieyang/workspace/openMVS/libs/Common/AABB.h
 AABB.inl
 /home/xieyang/workspace/openMVS/libs/Common/AABB.inl

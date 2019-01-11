@@ -89,16 +89,16 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : edit_cache
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
 
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
+# Special rule for the target install/strip
+install/strip/fast: install/strip
 
-.PHONY : edit_cache/fast
+.PHONY : install/strip/fast
 
 # Special rule for the target install/local
 install/local: preinstall
@@ -111,16 +111,16 @@ install/local/fast: install/local
 
 .PHONY : install/local/fast
 
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : edit_cache
 
-# Special rule for the target install/strip
-install/strip/fast: install/strip
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
 
-.PHONY : install/strip/fast
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -168,51 +168,6 @@ Common: libs/Common/CMakeFiles/Common.dir/rule
 Common/fast:
 	cd /home/xieyang/workspace/openMVS/MyBuild && $(MAKE) -f libs/Common/CMakeFiles/Common.dir/build.make libs/Common/CMakeFiles/Common.dir/build
 .PHONY : Common/fast
-
-# Convenience name for target.
-libs/Common/CMakeFiles/Common_pch.dir/rule:
-	cd /home/xieyang/workspace/openMVS/MyBuild && $(MAKE) -f CMakeFiles/Makefile2 libs/Common/CMakeFiles/Common_pch.dir/rule
-.PHONY : libs/Common/CMakeFiles/Common_pch.dir/rule
-
-# Convenience name for target.
-Common_pch: libs/Common/CMakeFiles/Common_pch.dir/rule
-
-.PHONY : Common_pch
-
-# fast build rule for target.
-Common_pch/fast:
-	cd /home/xieyang/workspace/openMVS/MyBuild && $(MAKE) -f libs/Common/CMakeFiles/Common_pch.dir/build.make libs/Common/CMakeFiles/Common_pch.dir/build
-.PHONY : Common_pch/fast
-
-# Convenience name for target.
-libs/Common/CMakeFiles/all_pch.dir/rule:
-	cd /home/xieyang/workspace/openMVS/MyBuild && $(MAKE) -f CMakeFiles/Makefile2 libs/Common/CMakeFiles/all_pch.dir/rule
-.PHONY : libs/Common/CMakeFiles/all_pch.dir/rule
-
-# Convenience name for target.
-all_pch: libs/Common/CMakeFiles/all_pch.dir/rule
-
-.PHONY : all_pch
-
-# fast build rule for target.
-all_pch/fast:
-	cd /home/xieyang/workspace/openMVS/MyBuild && $(MAKE) -f libs/Common/CMakeFiles/all_pch.dir/build.make libs/Common/CMakeFiles/all_pch.dir/build
-.PHONY : all_pch/fast
-
-# Convenience name for target.
-libs/Common/CMakeFiles/clean_cotire.dir/rule:
-	cd /home/xieyang/workspace/openMVS/MyBuild && $(MAKE) -f CMakeFiles/Makefile2 libs/Common/CMakeFiles/clean_cotire.dir/rule
-.PHONY : libs/Common/CMakeFiles/clean_cotire.dir/rule
-
-# Convenience name for target.
-clean_cotire: libs/Common/CMakeFiles/clean_cotire.dir/rule
-
-.PHONY : clean_cotire
-
-# fast build rule for target.
-clean_cotire/fast:
-	cd /home/xieyang/workspace/openMVS/MyBuild && $(MAKE) -f libs/Common/CMakeFiles/clean_cotire.dir/build.make libs/Common/CMakeFiles/clean_cotire.dir/build
-.PHONY : clean_cotire/fast
 
 CUDA.o: CUDA.cpp.o
 
@@ -466,13 +421,10 @@ help:
 	@echo "... install"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... edit_cache"
-	@echo "... install/local"
-	@echo "... install/strip"
 	@echo "... Common"
-	@echo "... Common_pch"
-	@echo "... all_pch"
-	@echo "... clean_cotire"
+	@echo "... install/strip"
+	@echo "... install/local"
+	@echo "... edit_cache"
 	@echo "... CUDA.o"
 	@echo "... CUDA.i"
 	@echo "... CUDA.s"

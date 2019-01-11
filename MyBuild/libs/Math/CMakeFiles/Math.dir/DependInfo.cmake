@@ -7,7 +7,6 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/xieyang/workspace/openMVS/libs/Math/Common.cpp" "/home/xieyang/workspace/openMVS/MyBuild/libs/Math/CMakeFiles/Math.dir/Common.cpp.o"
   "/home/xieyang/workspace/openMVS/libs/Math/IBFS/IBFS.cpp" "/home/xieyang/workspace/openMVS/MyBuild/libs/Math/CMakeFiles/Math.dir/IBFS/IBFS.cpp.o"
   "/home/xieyang/workspace/openMVS/libs/Math/LMFit/lmmin.cpp" "/home/xieyang/workspace/openMVS/MyBuild/libs/Math/CMakeFiles/Math.dir/LMFit/lmmin.cpp.o"
-  "/home/xieyang/workspace/openMVS/MyBuild/libs/Math/cotire/Math_CXX_prefix.hxx" "/home/xieyang/workspace/openMVS/MyBuild/libs/Math/cotire/Math_CXX_prefix.hxx.gch"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

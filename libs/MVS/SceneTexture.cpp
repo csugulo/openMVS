@@ -371,9 +371,15 @@ struct MeshTexture {
 		}
 	};
 
+    // used to store images' EXIF information
+    typedef	cList<EXIFInfo> EXIFArr;
+
+    // used to store images' sun direction
+    typedef cList<Vec3f> SunDirectionArr;
+
 
 public:
-	MeshTexture(Scene& _scene, unsigned _nResolutionLevel=0, unsigned _nMinResolution=640);
+	MeshTexture(Scene& _scene, String strOriginImagesFolder, unsigned _nResolutionLevel=0, unsigned _nMinResolution=640);
 	~MeshTexture();
 
 	void ListVertexFaces();
@@ -390,6 +396,10 @@ public:
 	void GlobalSeamLeveling();
 	void LocalSeamLeveling();
 	void GenerateTexture(bool bGlobalSeamLeveling, bool bLocalSeamLeveling, unsigned nTextureSizeMultiple, unsigned nRectPackingHeuristic, Pixel8U colEmpty);
+
+	bool LoadEXIFs();
+
+	bool GetSunDirections();
 
 	template <typename PIXEL>
 	static inline PIXEL RGB2YCBCR(const PIXEL& v) {
@@ -443,9 +453,14 @@ public:
 	ImageArr& images;
 
 	Scene& scene; // the mesh vertices and faces
+
+    // used for recovery surface appearance
+    String strOriginImagesFolder;
+    EXIFArr exifs;
+    SunDirectionArr sunDirections;
 };
 
-MeshTexture::MeshTexture(Scene& _scene, unsigned _nResolutionLevel, unsigned _nMinResolution)
+MeshTexture::MeshTexture(Scene& _scene, String strOriginImagesFolder, unsigned _nResolutionLevel, unsigned _nMinResolution)
 	:
 	nResolutionLevel(_nResolutionLevel),
 	nMinResolution(_nMinResolution),
@@ -456,7 +471,8 @@ MeshTexture::MeshTexture(Scene& _scene, unsigned _nResolutionLevel, unsigned _nM
 	vertices(_scene.mesh.vertices),
 	faces(_scene.mesh.faces),
 	images(_scene.images),
-	scene(_scene)
+	scene(_scene),
+    strOriginImagesFolder(strOriginImagesFolder)
 {
 }
 MeshTexture::~MeshTexture()
@@ -1968,10 +1984,52 @@ void MeshTexture::GenerateTexture(bool bGlobalSeamLeveling, bool bLocalSeamLevel
 	}
 }
 
-// texture mesh
-bool Scene::TextureMesh(unsigned nResolutionLevel, unsigned nMinResolution, float fOutlierThreshold, float fRatioDataSmoothness, bool bGlobalSeamLeveling, bool bLocalSeamLeveling, unsigned nTextureSizeMultiple, unsigned nRectPackingHeuristic, Pixel8U colEmpty)
+
+bool MeshTexture::LoadEXIFs()
 {
-	MeshTexture texture(*this, nResolutionLevel, nMinResolution);
+
+	exifs.resize(images.size());
+	FOREACH(viewIdx, images)
+	{
+		Image & image = images[viewIdx];
+		String imageName = Util::getFileNameExt(image.name);
+		String originImagePath = strOriginImagesFolder + "/" + imageName;
+		FILE *fp = fopen(originImagePath.c_str(), "rb");
+		if(!fp)
+		{
+			LOG("Can not open file %s", originImagePath.c_str());
+			return false;
+		}
+		fseek(fp, 0, SEEK_END);
+		unsigned long fsize = ftell(fp);
+		rewind(fp);
+		unsigned char *buf = new unsigned char[fsize];
+		if (fread(buf, 1, fsize, fp) != fsize) {
+			LOG("Can't read file.");
+			delete[] buf;
+			return false;
+		}
+		fclose(fp);
+
+		// Parse EXIF
+		EXIFInfo result;
+		int code = result.parseFrom(buf, fsize);
+		delete[] buf;
+		if (code) {
+			LOG("Error parsing EXIF: code %d", code);
+			return false;
+		}
+		exifs[viewIdx] = result;
+	}
+	return true;
+}
+
+// texture mesh
+bool Scene::TextureMesh(String strOriginImagesFolder, unsigned nResolutionLevel, unsigned nMinResolution, float fOutlierThreshold, float fRatioDataSmoothness, bool bGlobalSeamLeveling, bool bLocalSeamLeveling, unsigned nTextureSizeMultiple, unsigned nRectPackingHeuristic, Pixel8U colEmpty)
+{
+	MeshTexture texture(*this,strOriginImagesFolder, nResolutionLevel, nMinResolution);
+
+	if(!texture.LoadEXIFs()) return false;
 
 	// assign the best view to each face
 	{

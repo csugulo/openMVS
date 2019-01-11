@@ -47,6 +47,7 @@ namespace OPT {
 String strInputFileName;
 String strOutputFileName;
 String strMeshFileName;
+String strOriginImagesFolder;
 unsigned nResolutionLevel;
 unsigned nMinResolution;
 float fOutlierThreshold;
@@ -108,6 +109,7 @@ bool Initialize(size_t argc, LPCTSTR* argv)
 		("patch-packing-heuristic", boost::program_options::value<unsigned>(&OPT::nRectPackingHeuristic)->default_value(3), "specify the heuristic used when deciding where to place a new patch (0 - best fit, 3 - good speed, 100 - best speed)")
 		("empty-color", boost::program_options::value<uint32_t>(&OPT::nColEmpty)->default_value(0x00FF7F27), "color used for faces not covered by any image")
 		("orthographic-image-resolution", boost::program_options::value<unsigned>(&OPT::nOrthoMapResolution)->default_value(0), "orthographic image resolution to be generated from the textured mesh - the mesh is expected to be already geo-referenced or at least properly oriented (0 - disabled)")
+		("origin-images-folder", boost::program_options::value<std::string>(&OPT::strOriginImagesFolder), "need origin images' folder for EXIF ")
 		;
 
 	// hidden options, allowed both on command line and
@@ -161,6 +163,11 @@ bool Initialize(size_t argc, LPCTSTR* argv)
 	if (OPT::strInputFileName.IsEmpty())
 		return false;
 	OPT::strExportType = OPT::strExportType.ToLower() == _T("obj") ? _T(".obj") : _T(".ply");
+
+    Util::ensureValidPath(OPT::strOriginImagesFolder);
+    Util::ensureUnifySlash(OPT::strOriginImagesFolder);
+    if (OPT::strOriginImagesFolder.IsEmpty())
+        return false;
 
 	// initialize optional options
 	Util::ensureValidPath(OPT::strOutputFileName);
@@ -226,7 +233,7 @@ int main(int argc, LPCTSTR* argv)
 	{
 	// compute mesh texture
 	TD_TIMER_START();
-	if (!scene.TextureMesh(OPT::nResolutionLevel, OPT::nMinResolution, OPT::fOutlierThreshold, OPT::fRatioDataSmoothness, OPT::bGlobalSeamLeveling, OPT::bLocalSeamLeveling, OPT::nTextureSizeMultiple, OPT::nRectPackingHeuristic, Pixel8U(OPT::nColEmpty)))
+	if (!scene.TextureMesh(OPT::strOriginImagesFolder, OPT::nResolutionLevel, OPT::nMinResolution, OPT::fOutlierThreshold, OPT::fRatioDataSmoothness, OPT::bGlobalSeamLeveling, OPT::bLocalSeamLeveling, OPT::nTextureSizeMultiple, OPT::nRectPackingHeuristic, Pixel8U(OPT::nColEmpty)))
 		return EXIT_FAILURE;
 	VERBOSE("Mesh texturing completed: %u vertices, %u faces (%s)", scene.mesh.vertices.GetSize(), scene.mesh.faces.GetSize(), TD_TIMER_GET_FMT().c_str());
 

@@ -57,24 +57,9 @@ include libs/MVS/CMakeFiles/MVS.dir/progress.make
 # Include the compile flags for this target's objects.
 include libs/MVS/CMakeFiles/MVS.dir/flags.make
 
-libs/MVS/cotire/MVS_CXX_prefix.hxx.gch: libs/MVS/cotire/MVS_CXX_prefix.hxx
-libs/MVS/cotire/MVS_CXX_prefix.hxx.gch: /usr/bin/c++
-libs/MVS/cotire/MVS_CXX_prefix.hxx.gch: libs/MVS/cotire/MVS_CXX_prefix.hxx
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX precompiled header libs/MVS/cotire/MVS_CXX_prefix.hxx.gch"
-	cd /home/xieyang/workspace/openMVS/libs/MVS && /usr/bin/cmake -DCOTIRE_BUILD_TYPE:STRING=Release -DCOTIRE_VERBOSE:BOOL=$(VERBOSE) -P /home/xieyang/workspace/openMVS/build/Cotire.cmake precompile /home/xieyang/workspace/openMVS/MyBuild/libs/MVS/MVS_CXX_Cotire.cmake /home/xieyang/workspace/openMVS/MyBuild/libs/MVS/cotire/MVS_CXX_prefix.hxx /home/xieyang/workspace/openMVS/MyBuild/libs/MVS/cotire/MVS_CXX_prefix.hxx.gch /home/xieyang/workspace/openMVS/libs/MVS/Common.cpp
-
-libs/MVS/cotire/MVS_CXX_prefix.hxx: libs/MVS/cotire/MVS_CXX_prefix.cxx
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating CXX prefix header libs/MVS/cotire/MVS_CXX_prefix.hxx"
-	/usr/bin/cmake -DCOTIRE_BUILD_TYPE:STRING=Release -DCOTIRE_VERBOSE:BOOL=$(VERBOSE) -P /home/xieyang/workspace/openMVS/build/Cotire.cmake combine /home/xieyang/workspace/openMVS/MyBuild/libs/MVS/MVS_CXX_Cotire.cmake /home/xieyang/workspace/openMVS/MyBuild/libs/MVS/cotire/MVS_CXX_prefix.hxx /home/xieyang/workspace/openMVS/MyBuild/libs/MVS/cotire/MVS_CXX_prefix.cxx
-
-libs/MVS/cotire/MVS_CXX_prefix.cxx: ../libs/MVS/Common.h
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating CXX prefix source libs/MVS/cotire/MVS_CXX_prefix.cxx"
-	/usr/bin/cmake -DCOTIRE_BUILD_TYPE:STRING=Release -DCOTIRE_VERBOSE:BOOL=$(VERBOSE) -P /home/xieyang/workspace/openMVS/build/Cotire.cmake combine /home/xieyang/workspace/openMVS/MyBuild/libs/MVS/MVS_CXX_Cotire.cmake /home/xieyang/workspace/openMVS/MyBuild/libs/MVS/cotire/MVS_CXX_prefix.cxx /home/xieyang/workspace/openMVS/libs/MVS/Common.h
-
 libs/MVS/CMakeFiles/MVS.dir/Common.cpp.o: libs/MVS/CMakeFiles/MVS.dir/flags.make
 libs/MVS/CMakeFiles/MVS.dir/Common.cpp.o: ../libs/MVS/Common.cpp
-libs/MVS/CMakeFiles/MVS.dir/Common.cpp.o: libs/MVS/cotire/MVS_CXX_prefix.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object libs/MVS/CMakeFiles/MVS.dir/Common.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object libs/MVS/CMakeFiles/MVS.dir/Common.cpp.o"
 	cd /home/xieyang/workspace/openMVS/MyBuild/libs/MVS && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MVS.dir/Common.cpp.o -c /home/xieyang/workspace/openMVS/libs/MVS/Common.cpp
 
 libs/MVS/CMakeFiles/MVS.dir/Common.cpp.i: cmake_force
@@ -98,8 +83,7 @@ libs/MVS/CMakeFiles/MVS.dir/Common.cpp.o.provides.build: libs/MVS/CMakeFiles/MVS
 
 libs/MVS/CMakeFiles/MVS.dir/Image.cpp.o: libs/MVS/CMakeFiles/MVS.dir/flags.make
 libs/MVS/CMakeFiles/MVS.dir/Image.cpp.o: ../libs/MVS/Image.cpp
-libs/MVS/CMakeFiles/MVS.dir/Image.cpp.o: libs/MVS/cotire/MVS_CXX_prefix.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object libs/MVS/CMakeFiles/MVS.dir/Image.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object libs/MVS/CMakeFiles/MVS.dir/Image.cpp.o"
 	cd /home/xieyang/workspace/openMVS/MyBuild/libs/MVS && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MVS.dir/Image.cpp.o -c /home/xieyang/workspace/openMVS/libs/MVS/Image.cpp
 
 libs/MVS/CMakeFiles/MVS.dir/Image.cpp.i: cmake_force
@@ -123,8 +107,7 @@ libs/MVS/CMakeFiles/MVS.dir/Image.cpp.o.provides.build: libs/MVS/CMakeFiles/MVS.
 
 libs/MVS/CMakeFiles/MVS.dir/DepthMap.cpp.o: libs/MVS/CMakeFiles/MVS.dir/flags.make
 libs/MVS/CMakeFiles/MVS.dir/DepthMap.cpp.o: ../libs/MVS/DepthMap.cpp
-libs/MVS/CMakeFiles/MVS.dir/DepthMap.cpp.o: libs/MVS/cotire/MVS_CXX_prefix.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object libs/MVS/CMakeFiles/MVS.dir/DepthMap.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object libs/MVS/CMakeFiles/MVS.dir/DepthMap.cpp.o"
 	cd /home/xieyang/workspace/openMVS/MyBuild/libs/MVS && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MVS.dir/DepthMap.cpp.o -c /home/xieyang/workspace/openMVS/libs/MVS/DepthMap.cpp
 
 libs/MVS/CMakeFiles/MVS.dir/DepthMap.cpp.i: cmake_force
@@ -148,8 +131,7 @@ libs/MVS/CMakeFiles/MVS.dir/DepthMap.cpp.o.provides.build: libs/MVS/CMakeFiles/M
 
 libs/MVS/CMakeFiles/MVS.dir/Mesh.cpp.o: libs/MVS/CMakeFiles/MVS.dir/flags.make
 libs/MVS/CMakeFiles/MVS.dir/Mesh.cpp.o: ../libs/MVS/Mesh.cpp
-libs/MVS/CMakeFiles/MVS.dir/Mesh.cpp.o: libs/MVS/cotire/MVS_CXX_prefix.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object libs/MVS/CMakeFiles/MVS.dir/Mesh.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object libs/MVS/CMakeFiles/MVS.dir/Mesh.cpp.o"
 	cd /home/xieyang/workspace/openMVS/MyBuild/libs/MVS && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MVS.dir/Mesh.cpp.o -c /home/xieyang/workspace/openMVS/libs/MVS/Mesh.cpp
 
 libs/MVS/CMakeFiles/MVS.dir/Mesh.cpp.i: cmake_force
@@ -173,8 +155,7 @@ libs/MVS/CMakeFiles/MVS.dir/Mesh.cpp.o.provides.build: libs/MVS/CMakeFiles/MVS.d
 
 libs/MVS/CMakeFiles/MVS.dir/SceneRefineCUDA.cpp.o: libs/MVS/CMakeFiles/MVS.dir/flags.make
 libs/MVS/CMakeFiles/MVS.dir/SceneRefineCUDA.cpp.o: ../libs/MVS/SceneRefineCUDA.cpp
-libs/MVS/CMakeFiles/MVS.dir/SceneRefineCUDA.cpp.o: libs/MVS/cotire/MVS_CXX_prefix.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object libs/MVS/CMakeFiles/MVS.dir/SceneRefineCUDA.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object libs/MVS/CMakeFiles/MVS.dir/SceneRefineCUDA.cpp.o"
 	cd /home/xieyang/workspace/openMVS/MyBuild/libs/MVS && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MVS.dir/SceneRefineCUDA.cpp.o -c /home/xieyang/workspace/openMVS/libs/MVS/SceneRefineCUDA.cpp
 
 libs/MVS/CMakeFiles/MVS.dir/SceneRefineCUDA.cpp.i: cmake_force
@@ -198,8 +179,7 @@ libs/MVS/CMakeFiles/MVS.dir/SceneRefineCUDA.cpp.o.provides.build: libs/MVS/CMake
 
 libs/MVS/CMakeFiles/MVS.dir/SceneDensify.cpp.o: libs/MVS/CMakeFiles/MVS.dir/flags.make
 libs/MVS/CMakeFiles/MVS.dir/SceneDensify.cpp.o: ../libs/MVS/SceneDensify.cpp
-libs/MVS/CMakeFiles/MVS.dir/SceneDensify.cpp.o: libs/MVS/cotire/MVS_CXX_prefix.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object libs/MVS/CMakeFiles/MVS.dir/SceneDensify.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object libs/MVS/CMakeFiles/MVS.dir/SceneDensify.cpp.o"
 	cd /home/xieyang/workspace/openMVS/MyBuild/libs/MVS && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MVS.dir/SceneDensify.cpp.o -c /home/xieyang/workspace/openMVS/libs/MVS/SceneDensify.cpp
 
 libs/MVS/CMakeFiles/MVS.dir/SceneDensify.cpp.i: cmake_force
@@ -223,8 +203,7 @@ libs/MVS/CMakeFiles/MVS.dir/SceneDensify.cpp.o.provides.build: libs/MVS/CMakeFil
 
 libs/MVS/CMakeFiles/MVS.dir/Camera.cpp.o: libs/MVS/CMakeFiles/MVS.dir/flags.make
 libs/MVS/CMakeFiles/MVS.dir/Camera.cpp.o: ../libs/MVS/Camera.cpp
-libs/MVS/CMakeFiles/MVS.dir/Camera.cpp.o: libs/MVS/cotire/MVS_CXX_prefix.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object libs/MVS/CMakeFiles/MVS.dir/Camera.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object libs/MVS/CMakeFiles/MVS.dir/Camera.cpp.o"
 	cd /home/xieyang/workspace/openMVS/MyBuild/libs/MVS && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MVS.dir/Camera.cpp.o -c /home/xieyang/workspace/openMVS/libs/MVS/Camera.cpp
 
 libs/MVS/CMakeFiles/MVS.dir/Camera.cpp.i: cmake_force
@@ -248,8 +227,7 @@ libs/MVS/CMakeFiles/MVS.dir/Camera.cpp.o.provides.build: libs/MVS/CMakeFiles/MVS
 
 libs/MVS/CMakeFiles/MVS.dir/PointCloud.cpp.o: libs/MVS/CMakeFiles/MVS.dir/flags.make
 libs/MVS/CMakeFiles/MVS.dir/PointCloud.cpp.o: ../libs/MVS/PointCloud.cpp
-libs/MVS/CMakeFiles/MVS.dir/PointCloud.cpp.o: libs/MVS/cotire/MVS_CXX_prefix.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object libs/MVS/CMakeFiles/MVS.dir/PointCloud.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object libs/MVS/CMakeFiles/MVS.dir/PointCloud.cpp.o"
 	cd /home/xieyang/workspace/openMVS/MyBuild/libs/MVS && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MVS.dir/PointCloud.cpp.o -c /home/xieyang/workspace/openMVS/libs/MVS/PointCloud.cpp
 
 libs/MVS/CMakeFiles/MVS.dir/PointCloud.cpp.i: cmake_force
@@ -273,8 +251,7 @@ libs/MVS/CMakeFiles/MVS.dir/PointCloud.cpp.o.provides.build: libs/MVS/CMakeFiles
 
 libs/MVS/CMakeFiles/MVS.dir/Scene.cpp.o: libs/MVS/CMakeFiles/MVS.dir/flags.make
 libs/MVS/CMakeFiles/MVS.dir/Scene.cpp.o: ../libs/MVS/Scene.cpp
-libs/MVS/CMakeFiles/MVS.dir/Scene.cpp.o: libs/MVS/cotire/MVS_CXX_prefix.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object libs/MVS/CMakeFiles/MVS.dir/Scene.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object libs/MVS/CMakeFiles/MVS.dir/Scene.cpp.o"
 	cd /home/xieyang/workspace/openMVS/MyBuild/libs/MVS && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MVS.dir/Scene.cpp.o -c /home/xieyang/workspace/openMVS/libs/MVS/Scene.cpp
 
 libs/MVS/CMakeFiles/MVS.dir/Scene.cpp.i: cmake_force
@@ -298,8 +275,7 @@ libs/MVS/CMakeFiles/MVS.dir/Scene.cpp.o.provides.build: libs/MVS/CMakeFiles/MVS.
 
 libs/MVS/CMakeFiles/MVS.dir/SceneTexture.cpp.o: libs/MVS/CMakeFiles/MVS.dir/flags.make
 libs/MVS/CMakeFiles/MVS.dir/SceneTexture.cpp.o: ../libs/MVS/SceneTexture.cpp
-libs/MVS/CMakeFiles/MVS.dir/SceneTexture.cpp.o: libs/MVS/cotire/MVS_CXX_prefix.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object libs/MVS/CMakeFiles/MVS.dir/SceneTexture.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object libs/MVS/CMakeFiles/MVS.dir/SceneTexture.cpp.o"
 	cd /home/xieyang/workspace/openMVS/MyBuild/libs/MVS && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MVS.dir/SceneTexture.cpp.o -c /home/xieyang/workspace/openMVS/libs/MVS/SceneTexture.cpp
 
 libs/MVS/CMakeFiles/MVS.dir/SceneTexture.cpp.i: cmake_force
@@ -323,8 +299,7 @@ libs/MVS/CMakeFiles/MVS.dir/SceneTexture.cpp.o.provides.build: libs/MVS/CMakeFil
 
 libs/MVS/CMakeFiles/MVS.dir/Platform.cpp.o: libs/MVS/CMakeFiles/MVS.dir/flags.make
 libs/MVS/CMakeFiles/MVS.dir/Platform.cpp.o: ../libs/MVS/Platform.cpp
-libs/MVS/CMakeFiles/MVS.dir/Platform.cpp.o: libs/MVS/cotire/MVS_CXX_prefix.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object libs/MVS/CMakeFiles/MVS.dir/Platform.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object libs/MVS/CMakeFiles/MVS.dir/Platform.cpp.o"
 	cd /home/xieyang/workspace/openMVS/MyBuild/libs/MVS && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MVS.dir/Platform.cpp.o -c /home/xieyang/workspace/openMVS/libs/MVS/Platform.cpp
 
 libs/MVS/CMakeFiles/MVS.dir/Platform.cpp.i: cmake_force
@@ -348,8 +323,7 @@ libs/MVS/CMakeFiles/MVS.dir/Platform.cpp.o.provides.build: libs/MVS/CMakeFiles/M
 
 libs/MVS/CMakeFiles/MVS.dir/SceneReconstruct.cpp.o: libs/MVS/CMakeFiles/MVS.dir/flags.make
 libs/MVS/CMakeFiles/MVS.dir/SceneReconstruct.cpp.o: ../libs/MVS/SceneReconstruct.cpp
-libs/MVS/CMakeFiles/MVS.dir/SceneReconstruct.cpp.o: libs/MVS/cotire/MVS_CXX_prefix.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object libs/MVS/CMakeFiles/MVS.dir/SceneReconstruct.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object libs/MVS/CMakeFiles/MVS.dir/SceneReconstruct.cpp.o"
 	cd /home/xieyang/workspace/openMVS/MyBuild/libs/MVS && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MVS.dir/SceneReconstruct.cpp.o -c /home/xieyang/workspace/openMVS/libs/MVS/SceneReconstruct.cpp
 
 libs/MVS/CMakeFiles/MVS.dir/SceneReconstruct.cpp.i: cmake_force
@@ -373,8 +347,7 @@ libs/MVS/CMakeFiles/MVS.dir/SceneReconstruct.cpp.o.provides.build: libs/MVS/CMak
 
 libs/MVS/CMakeFiles/MVS.dir/SceneRefine.cpp.o: libs/MVS/CMakeFiles/MVS.dir/flags.make
 libs/MVS/CMakeFiles/MVS.dir/SceneRefine.cpp.o: ../libs/MVS/SceneRefine.cpp
-libs/MVS/CMakeFiles/MVS.dir/SceneRefine.cpp.o: libs/MVS/cotire/MVS_CXX_prefix.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object libs/MVS/CMakeFiles/MVS.dir/SceneRefine.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object libs/MVS/CMakeFiles/MVS.dir/SceneRefine.cpp.o"
 	cd /home/xieyang/workspace/openMVS/MyBuild/libs/MVS && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MVS.dir/SceneRefine.cpp.o -c /home/xieyang/workspace/openMVS/libs/MVS/SceneRefine.cpp
 
 libs/MVS/CMakeFiles/MVS.dir/SceneRefine.cpp.i: cmake_force
@@ -398,8 +371,7 @@ libs/MVS/CMakeFiles/MVS.dir/SceneRefine.cpp.o.provides.build: libs/MVS/CMakeFile
 
 libs/MVS/CMakeFiles/MVS.dir/RectsBinPack.cpp.o: libs/MVS/CMakeFiles/MVS.dir/flags.make
 libs/MVS/CMakeFiles/MVS.dir/RectsBinPack.cpp.o: ../libs/MVS/RectsBinPack.cpp
-libs/MVS/CMakeFiles/MVS.dir/RectsBinPack.cpp.o: libs/MVS/cotire/MVS_CXX_prefix.hxx.gch
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object libs/MVS/CMakeFiles/MVS.dir/RectsBinPack.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object libs/MVS/CMakeFiles/MVS.dir/RectsBinPack.cpp.o"
 	cd /home/xieyang/workspace/openMVS/MyBuild/libs/MVS && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/MVS.dir/RectsBinPack.cpp.o -c /home/xieyang/workspace/openMVS/libs/MVS/RectsBinPack.cpp
 
 libs/MVS/CMakeFiles/MVS.dir/RectsBinPack.cpp.i: cmake_force
@@ -457,7 +429,7 @@ lib/libMVS.a: libs/MVS/CMakeFiles/MVS.dir/SceneRefine.cpp.o
 lib/libMVS.a: libs/MVS/CMakeFiles/MVS.dir/RectsBinPack.cpp.o
 lib/libMVS.a: libs/MVS/CMakeFiles/MVS.dir/build.make
 lib/libMVS.a: libs/MVS/CMakeFiles/MVS.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Linking CXX static library ../../lib/libMVS.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/xieyang/workspace/openMVS/MyBuild/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Linking CXX static library ../../lib/libMVS.a"
 	cd /home/xieyang/workspace/openMVS/MyBuild/libs/MVS && $(CMAKE_COMMAND) -P CMakeFiles/MVS.dir/cmake_clean_target.cmake
 	cd /home/xieyang/workspace/openMVS/MyBuild/libs/MVS && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/MVS.dir/link.txt --verbose=$(VERBOSE)
 
@@ -487,9 +459,7 @@ libs/MVS/CMakeFiles/MVS.dir/clean:
 	cd /home/xieyang/workspace/openMVS/MyBuild/libs/MVS && $(CMAKE_COMMAND) -P CMakeFiles/MVS.dir/cmake_clean.cmake
 .PHONY : libs/MVS/CMakeFiles/MVS.dir/clean
 
-libs/MVS/CMakeFiles/MVS.dir/depend: libs/MVS/cotire/MVS_CXX_prefix.hxx.gch
-libs/MVS/CMakeFiles/MVS.dir/depend: libs/MVS/cotire/MVS_CXX_prefix.hxx
-libs/MVS/CMakeFiles/MVS.dir/depend: libs/MVS/cotire/MVS_CXX_prefix.cxx
+libs/MVS/CMakeFiles/MVS.dir/depend:
 	cd /home/xieyang/workspace/openMVS/MyBuild && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/xieyang/workspace/openMVS /home/xieyang/workspace/openMVS/libs/MVS /home/xieyang/workspace/openMVS/MyBuild /home/xieyang/workspace/openMVS/MyBuild/libs/MVS /home/xieyang/workspace/openMVS/MyBuild/libs/MVS/CMakeFiles/MVS.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : libs/MVS/CMakeFiles/MVS.dir/depend
 

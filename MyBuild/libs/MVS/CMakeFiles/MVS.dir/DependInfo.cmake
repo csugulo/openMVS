@@ -18,7 +18,6 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/xieyang/workspace/openMVS/libs/MVS/SceneRefine.cpp" "/home/xieyang/workspace/openMVS/MyBuild/libs/MVS/CMakeFiles/MVS.dir/SceneRefine.cpp.o"
   "/home/xieyang/workspace/openMVS/libs/MVS/SceneRefineCUDA.cpp" "/home/xieyang/workspace/openMVS/MyBuild/libs/MVS/CMakeFiles/MVS.dir/SceneRefineCUDA.cpp.o"
   "/home/xieyang/workspace/openMVS/libs/MVS/SceneTexture.cpp" "/home/xieyang/workspace/openMVS/MyBuild/libs/MVS/CMakeFiles/MVS.dir/SceneTexture.cpp.o"
-  "/home/xieyang/workspace/openMVS/MyBuild/libs/MVS/cotire/MVS_CXX_prefix.hxx" "/home/xieyang/workspace/openMVS/MyBuild/libs/MVS/cotire/MVS_CXX_prefix.hxx.gch"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

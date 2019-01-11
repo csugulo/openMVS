@@ -89,14 +89,6 @@ CMAKE_COLOR_MAKEFILE:BOOL=ON
 //CXX compiler
 CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/c++
 
-//A wrapper around 'ar' adding the appropriate '--plugin' option
-// for the GCC compiler
-CMAKE_CXX_COMPILER_AR:FILEPATH=/usr/bin/gcc-ar-5
-
-//A wrapper around 'ranlib' adding the appropriate '--plugin' option
-// for the GCC compiler
-CMAKE_CXX_COMPILER_RANLIB:FILEPATH=/usr/bin/gcc-ranlib-5
-
 //Flags used by the compiler during all build types.
 CMAKE_CXX_FLAGS:STRING=
 
@@ -115,14 +107,6 @@ CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
 
 //C compiler
 CMAKE_C_COMPILER:FILEPATH=/usr/bin/cc
-
-//A wrapper around 'ar' adding the appropriate '--plugin' option
-// for the GCC compiler
-CMAKE_C_COMPILER_AR:FILEPATH=/usr/bin/gcc-ar-5
-
-//A wrapper around 'ranlib' adding the appropriate '--plugin' option
-// for the GCC compiler
-CMAKE_C_COMPILER_RANLIB:FILEPATH=/usr/bin/gcc-ranlib-5
 
 //Flags used by the compiler during all build types.
 CMAKE_C_FLAGS:STRING=
@@ -254,120 +238,6 @@ CMAKE_USE_RELATIVE_PATHS:BOOL=OFF
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
-//Ignore headers with the listed file extensions from the generated
-// prefix header.
-COTIRE_ADDITIONAL_PREFIX_HEADER_IGNORE_EXTENSIONS:STRING=inc;inl;ipp
-
-//Ignore headers from these directories when generating the prefix
-// header.
-COTIRE_ADDITIONAL_PREFIX_HEADER_IGNORE_PATH:STRING=
-
-//Enable cotire debugging output?
-COTIRE_DEBUG:BOOL=OFF
-
-//Maximum number of source files to include in a single unity source
-// file.
-COTIRE_MAXIMUM_NUMBER_OF_UNITY_INCLUDES:STRING=0
-
-//Minimum number of sources in target required to enable use of
-// precompiled header.
-COTIRE_MINIMUM_NUMBER_OF_TARGET_SOURCES:STRING=2
-
-//Ignore sources with the listed file extensions from the generated
-// unity source.
-COTIRE_UNITY_SOURCE_EXCLUDE_EXTENSIONS:STRING=m;mm
-
-//Enable cotire verbose output?
-COTIRE_VERBOSE:BOOL=OFF
-
-//Compile device code in 64 bit mode
-CUDA_64_BIT_DEVICE_CODE:BOOL=ON
-
-//Attach the build rule to the CUDA source file.  Enable only when
-// the CUDA source file is added to at most one target.
-CUDA_ATTACH_VS_BUILD_RULE_TO_CUDA_FILE:BOOL=ON
-
-//Generate and parse .cubin files in Device mode.
-CUDA_BUILD_CUBIN:BOOL=OFF
-
-//Build in Emulation mode
-CUDA_BUILD_EMULATION:BOOL=OFF
-
-//"cudart" library
-CUDA_CUDART_LIBRARY:FILEPATH=CUDA_CUDART_LIBRARY-NOTFOUND
-
-//"cuda" library (older versions only).
-CUDA_CUDA_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libcuda.so
-
-//Directory to put all the output files.  If blank it will default
-// to the CMAKE_CURRENT_BINARY_DIR
-CUDA_GENERATED_OUTPUT_DIR:PATH=
-
-//Generated file extension
-CUDA_HOST_COMPILATION_CPP:BOOL=ON
-
-//Host side compiler used by NVCC
-CUDA_HOST_COMPILER:FILEPATH=/usr/bin/cc
-
-//Path to a program.
-CUDA_NVCC_EXECUTABLE:FILEPATH=CUDA_NVCC_EXECUTABLE-NOTFOUND
-
-//Semi-colon delimit multiple arguments.
-CUDA_NVCC_FLAGS:STRING=
-
-//Semi-colon delimit multiple arguments.
-CUDA_NVCC_FLAGS_DEBUG:STRING=
-
-//Semi-colon delimit multiple arguments.
-CUDA_NVCC_FLAGS_MINSIZEREL:STRING=
-
-//Semi-colon delimit multiple arguments.
-CUDA_NVCC_FLAGS_RELEASE:STRING=
-
-//Semi-colon delimit multiple arguments.
-CUDA_NVCC_FLAGS_RELWITHDEBINFO:STRING=
-
-//Propage C/CXX_FLAGS and friends to the host compiler via -Xcompile
-CUDA_PROPAGATE_HOST_FLAGS:BOOL=ON
-
-//Path to a file.
-CUDA_SDK_ROOT_DIR:PATH=CUDA_SDK_ROOT_DIR-NOTFOUND
-
-//Compile CUDA objects with separable compilation enabled.  Requires
-// CUDA 5.0+
-CUDA_SEPARABLE_COMPILATION:BOOL=OFF
-
-//Specify the name of the class of CPU architecture for which the
-// input files must be compiled.
-CUDA_TARGET_CPU_ARCH:STRING=
-
-//Path to a file.
-CUDA_TOOLKIT_INCLUDE:PATH=CUDA_TOOLKIT_INCLUDE-NOTFOUND
-
-//Toolkit location.
-CUDA_TOOLKIT_ROOT_DIR:PATH=CUDA_TOOLKIT_ROOT_DIR-NOTFOUND
-
-//Toolkit target location.
-CUDA_TOOLKIT_TARGET_DIR:PATH=CUDA_TOOLKIT_ROOT_DIR-NOTFOUND
-
-//Print out the commands run while compiling the CUDA source file.
-//  With the Makefile generator this defaults to VERBOSE variable
-// specified on the command line, but can be forced on with this
-// option.
-CUDA_VERBOSE_BUILD:BOOL=OFF
-
-//"cublas" library
-CUDA_cublas_LIBRARY:FILEPATH=CUDA_cublas_LIBRARY-NOTFOUND
-
-//"cublasemu" library
-CUDA_cublasemu_LIBRARY:FILEPATH=CUDA_cublasemu_LIBRARY-NOTFOUND
-
-//"cufft" library
-CUDA_cufft_LIBRARY:FILEPATH=CUDA_cufft_LIBRARY-NOTFOUND
-
-//"cufftemu" library
-CUDA_cufftemu_LIBRARY:FILEPATH=CUDA_cufftemu_LIBRARY-NOTFOUND
-
 //Dependencies for the target
 Common_LIB_DEPENDS:STATIC=general;/usr/lib/x86_64-linux-gnu/libboost_iostreams.so;general;/usr/lib/x86_64-linux-gnu/libboost_program_options.so;general;/usr/lib/x86_64-linux-gnu/libboost_system.so;general;/usr/lib/x86_64-linux-gnu/libboost_serialization.so;general;/usr/lib/x86_64-linux-gnu/libboost_regex.so;general;opencv_videostab;general;opencv_video;general;opencv_ts;general;opencv_superres;general;opencv_stitching;general;opencv_photo;general;opencv_ocl;general;opencv_objdetect;general;opencv_ml;general;opencv_legacy;general;opencv_imgproc;general;opencv_highgui;general;opencv_gpu;general;opencv_flann;general;opencv_features2d;general;opencv_core;general;opencv_contrib;general;opencv_calib3d;
 
@@ -427,12 +297,6 @@ GLEW_INCLUDE_DIR:PATH=/usr/include
 //Path to a library.
 GLEW_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libGLEW.so
 
-//Path to a library.
-GLEW_LIBRARY_DEBUG:FILEPATH=GLEW_LIBRARY_DEBUG-NOTFOUND
-
-//Path to a library.
-GLEW_LIBRARY_RELEASE:FILEPATH=/usr/lib/x86_64-linux-gnu/libGLEW.so
-
 //Installation directory for executables
 INSTALL_BIN_DIR:PATH=bin/OpenMVS
 
@@ -464,28 +328,13 @@ MVS_LIB_DEPENDS:STATIC=general;Common;general;Math;general;IO;general;/usr/lib/x
 Math_LIB_DEPENDS:STATIC=general;Common;
 
 //Path to a file.
-OPENGL_EGL_INCLUDE_DIR:PATH=OPENGL_EGL_INCLUDE_DIR-NOTFOUND
-
-//Path to a file.
-OPENGL_GLX_INCLUDE_DIR:PATH=/usr/include
-
-//Path to a file.
 OPENGL_INCLUDE_DIR:PATH=/usr/include
-
-//Path to a library.
-OPENGL_egl_LIBRARY:FILEPATH=OPENGL_egl_LIBRARY-NOTFOUND
 
 //Path to a library.
 OPENGL_gl_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libGL.so
 
 //Path to a library.
 OPENGL_glu_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libGLU.so
-
-//Path to a library.
-OPENGL_glx_LIBRARY:FILEPATH=OPENGL_glx_LIBRARY-NOTFOUND
-
-//Path to a library.
-OPENGL_opengl_LIBRARY:FILEPATH=OPENGL_opengl_LIBRARY-NOTFOUND
 
 //Path to a file.
 OPENGL_xmesa_INCLUDE_DIR:PATH=OPENGL_xmesa_INCLUDE_DIR-NOTFOUND
@@ -510,20 +359,8 @@ OpenCV_LIB_DIR_OPT:PATH=
 //C++ compiler flags for OpenMP parallization
 OpenMP_CXX_FLAGS:STRING=-fopenmp
 
-//CXX compiler libraries for OpenMP parallelization
-OpenMP_CXX_LIB_NAMES:STRING=gomp;pthread
-
 //C compiler flags for OpenMP parallization
 OpenMP_C_FLAGS:STRING=-fopenmp
-
-//C compiler libraries for OpenMP parallelization
-OpenMP_C_LIB_NAMES:STRING=gomp;pthread
-
-//Path to the gomp library for OpenMP
-OpenMP_gomp_LIBRARY:FILEPATH=/usr/lib/gcc/x86_64-linux-gnu/5/libgomp.so
-
-//Path to the pthread library for OpenMP
-OpenMP_pthread_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libpthread.so
 
 //Value Computed by CMake
 OpenMVS_BINARY_DIR:STATIC=/home/xieyang/workspace/openMVS/MyBuild
@@ -541,7 +378,7 @@ OpenMVS_USE_BREAKPAD:BOOL=ON
 OpenMVS_USE_CERES:BOOL=OFF
 
 //Enable CUDA library
-OpenMVS_USE_CUDA:BOOL=ON
+OpenMVS_USE_CUDA:BOOL=False
 
 //Link and use EXIV2 library
 OpenMVS_USE_EXIV2:BOOL=OFF
@@ -605,12 +442,6 @@ c_default:PATH=   -W -Wall -Werror=address -Werror=sequence-point -Wformat -Werr
 
 //Common compile CXX flags
 cxx_default:PATH='   -W -Wall -Werror=address -Werror=sequence-point -Wformat -Werror=format-security -Winit-self -Wsign-promo -Wreorder -Wno-undef -Wno-switch -Wno-switch-enum -Wno-switch-default -Wno-comment -Wno-narrowing -Wno-attributes -Wno-enum-compare -Wno-missing-field-initializers -Wno-unused-parameter -Wno-delete-incomplete -fdiagnostics-show-option -ftemplate-backtrace-limit=0 -Wno-long-long -pthread -fomit-frame-pointer -frounding-math -msse -msse2 -msse3 -mssse3 -msse4.1 -msse4.2 -ffunction-sections -Wall -fexceptions '
-
-//Path to a file.
-jconfig_dir:PATH=/usr/include/x86_64-linux-gnu
-
-//Path to a library.
-pkgcfg_lib_GLFW_glfw:FILEPATH=/usr/lib/x86_64-linux-gnu/libglfw.so
 
 
 ########################
@@ -683,10 +514,6 @@ CMAKE_CPACK_COMMAND:INTERNAL=/usr/bin/cpack
 CMAKE_CTEST_COMMAND:INTERNAL=/usr/bin/ctest
 //ADVANCED property for variable: CMAKE_CXX_COMPILER
 CMAKE_CXX_COMPILER-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CMAKE_CXX_COMPILER_AR
-CMAKE_CXX_COMPILER_AR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CMAKE_CXX_COMPILER_RANLIB
-CMAKE_CXX_COMPILER_RANLIB-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_CXX_FLAGS
 CMAKE_CXX_FLAGS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_CXX_FLAGS_DEBUG
@@ -699,10 +526,6 @@ CMAKE_CXX_FLAGS_RELEASE-ADVANCED:INTERNAL=1
 CMAKE_CXX_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_C_COMPILER
 CMAKE_C_COMPILER-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CMAKE_C_COMPILER_AR
-CMAKE_C_COMPILER_AR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CMAKE_C_COMPILER_RANLIB
-CMAKE_C_COMPILER_RANLIB-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_C_FLAGS
 CMAKE_C_FLAGS-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_C_FLAGS_DEBUG
@@ -733,8 +556,6 @@ CMAKE_EXPORT_COMPILE_COMMANDS-ADVANCED:INTERNAL=1
 CMAKE_EXTRA_GENERATOR:INTERNAL=
 //Name of generator.
 CMAKE_GENERATOR:INTERNAL=Unix Makefiles
-//Generator instance identifier.
-CMAKE_GENERATOR_INSTANCE:INTERNAL=
 //Name of generator platform.
 CMAKE_GENERATOR_PLATFORM:INTERNAL=
 //Name of generator toolset.
@@ -766,8 +587,6 @@ CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=15
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
 CMAKE_OBJDUMP-ADVANCED:INTERNAL=1
-//Platform information initialized
-CMAKE_PLATFORM_INFO_INITIALIZED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_RANLIB
 CMAKE_RANLIB-ADVANCED:INTERNAL=1
 //Path to CMake installation.
@@ -802,99 +621,16 @@ CMAKE_STRIP-ADVANCED:INTERNAL=1
 CMAKE_UNAME:INTERNAL=/bin/uname
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
-//Common cotire message.
-COTIREMSG_Common:INTERNAL=CXX target Common cotired without unity build.
-//IO cotire message.
-COTIREMSG_IO:INTERNAL=CXX target IO cotired without unity build.
-//MVS cotire message.
-COTIREMSG_MVS:INTERNAL=CXX target MVS cotired without unity build.
-//Math cotire message.
-COTIREMSG_Math:INTERNAL=CXX target Math cotired without unity build.
-//Viewer cotire message.
-COTIREMSG_Viewer:INTERNAL=CXX target Viewer cotired without unity build.
-//ADVANCED property for variable: CUDA_64_BIT_DEVICE_CODE
-CUDA_64_BIT_DEVICE_CODE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_ATTACH_VS_BUILD_RULE_TO_CUDA_FILE
-CUDA_ATTACH_VS_BUILD_RULE_TO_CUDA_FILE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_BUILD_CUBIN
-CUDA_BUILD_CUBIN-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_BUILD_EMULATION
-CUDA_BUILD_EMULATION-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_CUDART_LIBRARY
-CUDA_CUDART_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_CUDA_LIBRARY
-CUDA_CUDA_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_GENERATED_OUTPUT_DIR
-CUDA_GENERATED_OUTPUT_DIR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_HOST_COMPILATION_CPP
-CUDA_HOST_COMPILATION_CPP-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_NVCC_EXECUTABLE
-CUDA_NVCC_EXECUTABLE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_NVCC_FLAGS
-CUDA_NVCC_FLAGS-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_NVCC_FLAGS_DEBUG
-CUDA_NVCC_FLAGS_DEBUG-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_NVCC_FLAGS_MINSIZEREL
-CUDA_NVCC_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_NVCC_FLAGS_RELEASE
-CUDA_NVCC_FLAGS_RELEASE-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_NVCC_FLAGS_RELWITHDEBINFO
-CUDA_NVCC_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_PROPAGATE_HOST_FLAGS
-CUDA_PROPAGATE_HOST_FLAGS-ADVANCED:INTERNAL=1
-//This is the value of the last time CUDA_SDK_ROOT_DIR was set
-// successfully.
-CUDA_SDK_ROOT_DIR_INTERNAL:INTERNAL=CUDA_SDK_ROOT_DIR-NOTFOUND
-//ADVANCED property for variable: CUDA_SEPARABLE_COMPILATION
-CUDA_SEPARABLE_COMPILATION-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_TARGET_CPU_ARCH
-CUDA_TARGET_CPU_ARCH-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_TOOLKIT_INCLUDE
-CUDA_TOOLKIT_INCLUDE-ADVANCED:INTERNAL=1
-//This is the value of the last time CUDA_TOOLKIT_ROOT_DIR was
-// set successfully.
-CUDA_TOOLKIT_ROOT_DIR_INTERNAL:INTERNAL=CUDA_TOOLKIT_ROOT_DIR-NOTFOUND
-//ADVANCED property for variable: CUDA_TOOLKIT_TARGET_DIR
-CUDA_TOOLKIT_TARGET_DIR-ADVANCED:INTERNAL=1
-//This is the value of the last time CUDA_TOOLKIT_TARGET_DIR was
-// set successfully.
-CUDA_TOOLKIT_TARGET_DIR_INTERNAL:INTERNAL=CUDA_TOOLKIT_ROOT_DIR-NOTFOUND
-//Use the static version of the CUDA runtime library if available
-CUDA_USE_STATIC_CUDA_RUNTIME:INTERNAL=OFF
-//ADVANCED property for variable: CUDA_VERBOSE_BUILD
-CUDA_VERBOSE_BUILD-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_cublas_LIBRARY
-CUDA_cublas_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_cublasemu_LIBRARY
-CUDA_cublasemu_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_cufft_LIBRARY
-CUDA_cufft_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CUDA_cufftemu_LIBRARY
-CUDA_cufftemu_LIBRARY-ADVANCED:INTERNAL=1
-//Location of make2cmake.cmake
-CUDA_make2cmake:INTERNAL=/usr/share/cmake-3.5/Modules/FindCUDA/make2cmake.cmake
-//Location of parse_cubin.cmake
-CUDA_parse_cubin:INTERNAL=/usr/share/cmake-3.5/Modules/FindCUDA/parse_cubin.cmake
-//Location of run_nvcc.cmake
-CUDA_run_nvcc:INTERNAL=/usr/share/cmake-3.5/Modules/FindCUDA/run_nvcc.cmake
 //ADVANCED property for variable: EIGEN_DIR
 EIGEN_DIR-ADVANCED:INTERNAL=1
 //Details about finding OpenGL
 FIND_PACKAGE_MESSAGE_DETAILS_OpenGL:INTERNAL=[/usr/lib/x86_64-linux-gnu/libGL.so][/usr/include][v()]
 //Details about finding OpenMP
 FIND_PACKAGE_MESSAGE_DETAILS_OpenMP:INTERNAL=[-fopenmp][-fopenmp][v()]
-//Details about finding OpenMP_C
-FIND_PACKAGE_MESSAGE_DETAILS_OpenMP_C:INTERNAL=[-fopenmp][/usr/lib/gcc/x86_64-linux-gnu/5/libgomp.so][/usr/lib/x86_64-linux-gnu/libpthread.so][v4.0()]
-//Details about finding OpenMP_CXX
-FIND_PACKAGE_MESSAGE_DETAILS_OpenMP_CXX:INTERNAL=[-fopenmp][/usr/lib/gcc/x86_64-linux-gnu/5/libgomp.so][/usr/lib/x86_64-linux-gnu/libpthread.so][v4.0()]
 //ADVANCED property for variable: GLEW_INCLUDE_DIR
 GLEW_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: GLEW_LIBRARY
 GLEW_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: GLEW_LIBRARY_DEBUG
-GLEW_LIBRARY_DEBUG-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: GLEW_LIBRARY_RELEASE
-GLEW_LIBRARY_RELEASE-ADVANCED:INTERNAL=1
 GLFW_CFLAGS:INTERNAL=-I/usr/include/libdrm
 GLFW_CFLAGS_I:INTERNAL=
 GLFW_CFLAGS_OTHER:INTERNAL=
@@ -1075,22 +811,12 @@ HAVE_INTTYPES_H:INTERNAL=1
 JPEG_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: JPEG_LIBRARY
 JPEG_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: OPENGL_EGL_INCLUDE_DIR
-OPENGL_EGL_INCLUDE_DIR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: OPENGL_GLX_INCLUDE_DIR
-OPENGL_GLX_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OPENGL_INCLUDE_DIR
 OPENGL_INCLUDE_DIR-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: OPENGL_egl_LIBRARY
-OPENGL_egl_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OPENGL_gl_LIBRARY
 OPENGL_gl_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OPENGL_glu_LIBRARY
 OPENGL_glu_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: OPENGL_glx_LIBRARY
-OPENGL_glx_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: OPENGL_opengl_LIBRARY
-OPENGL_opengl_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OPENGL_xmesa_INCLUDE_DIR
 OPENGL_xmesa_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OpenCV_3RDPARTY_LIB_DIR_DBG
@@ -1103,32 +829,12 @@ OpenCV_CONFIG_PATH-ADVANCED:INTERNAL=1
 OpenCV_LIB_DIR_DBG-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: OpenCV_LIB_DIR_OPT
 OpenCV_LIB_DIR_OPT-ADVANCED:INTERNAL=1
-//Result of TRY_COMPILE
-OpenMP_COMPILE_RESULT_CXX_fopenmp:INTERNAL=TRUE
-//Result of TRY_COMPILE
-OpenMP_COMPILE_RESULT_C_fopenmp:INTERNAL=TRUE
 //ADVANCED property for variable: OpenMP_CXX_FLAGS
 OpenMP_CXX_FLAGS-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: OpenMP_CXX_LIB_NAMES
-OpenMP_CXX_LIB_NAMES-ADVANCED:INTERNAL=1
-//CXX compiler's OpenMP specification date
-OpenMP_CXX_SPEC_DATE:INTERNAL=201307
 //ADVANCED property for variable: OpenMP_C_FLAGS
 OpenMP_C_FLAGS-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: OpenMP_C_LIB_NAMES
-OpenMP_C_LIB_NAMES-ADVANCED:INTERNAL=1
-//C compiler's OpenMP specification date
-OpenMP_C_SPEC_DATE:INTERNAL=201307
 //Test OpenMP_FLAG_DETECTED
 OpenMP_FLAG_DETECTED:INTERNAL=1
-//Result of TRY_COMPILE
-OpenMP_SPECTEST_CXX_:INTERNAL=TRUE
-//Result of TRY_COMPILE
-OpenMP_SPECTEST_C_:INTERNAL=TRUE
-//ADVANCED property for variable: OpenMP_gomp_LIBRARY
-OpenMP_gomp_LIBRARY-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: OpenMP_pthread_LIBRARY
-OpenMP_pthread_LIBRARY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PKG_CONFIG_EXECUTABLE
 PKG_CONFIG_EXECUTABLE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: PNG_LIBRARY_DEBUG

@@ -18,7 +18,6 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/xieyang/workspace/openMVS/libs/IO/OBJ.cpp" "/home/xieyang/workspace/openMVS/MyBuild/libs/IO/CMakeFiles/IO.dir/OBJ.cpp.o"
   "/home/xieyang/workspace/openMVS/libs/IO/PLY.cpp" "/home/xieyang/workspace/openMVS/MyBuild/libs/IO/CMakeFiles/IO.dir/PLY.cpp.o"
   "/home/xieyang/workspace/openMVS/libs/IO/TinyXML2.cpp" "/home/xieyang/workspace/openMVS/MyBuild/libs/IO/CMakeFiles/IO.dir/TinyXML2.cpp.o"
-  "/home/xieyang/workspace/openMVS/MyBuild/libs/IO/cotire/IO_CXX_prefix.hxx" "/home/xieyang/workspace/openMVS/MyBuild/libs/IO/cotire/IO_CXX_prefix.hxx.gch"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

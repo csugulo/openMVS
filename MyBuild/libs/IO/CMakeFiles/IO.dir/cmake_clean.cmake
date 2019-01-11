@@ -1,7 +1,4 @@
 file(REMOVE_RECURSE
-  "cotire/IO_CXX_prefix.hxx.gch"
-  "cotire/IO_CXX_prefix.hxx"
-  "cotire/IO_CXX_prefix.cxx"
   "CMakeFiles/IO.dir/Common.cpp.o"
   "CMakeFiles/IO.dir/ImageEXIF.cpp.o"
   "CMakeFiles/IO.dir/ImageSCI.cpp.o"

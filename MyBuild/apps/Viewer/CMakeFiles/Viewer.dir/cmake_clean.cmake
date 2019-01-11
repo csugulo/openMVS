@@ -1,7 +1,4 @@
 file(REMOVE_RECURSE
-  "cotire/Viewer_CXX_prefix.hxx.gch"
-  "cotire/Viewer_CXX_prefix.hxx"
-  "cotire/Viewer_CXX_prefix.cxx"
   "CMakeFiles/Viewer.dir/Common.cpp.o"
   "CMakeFiles/Viewer.dir/Image.cpp.o"
   "CMakeFiles/Viewer.dir/Camera.cpp.o"
