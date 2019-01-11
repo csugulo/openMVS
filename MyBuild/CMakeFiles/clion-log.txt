@@ -1,0 +1,73 @@
+/home/xieyang/IDE/clion-2018.3/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE= -G "CodeBlocks - Unix Makefiles" /home/xieyang/workspace/openMVS
+-- The C compiler identification is GNU 5.4.0
+-- The CXX compiler identification is GNU 5.4.0
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+CMake Deprecation Warning at CMakeLists.txt:32 (cmake_policy):
+  The OLD behavior for policy CMP0011 will be removed from a future version
+  of CMake.
+
+  The cmake-policies(7) manual explains that the OLD behaviors of all
+  policies are deprecated and that a policy should be set to OLD only under
+  specific short-term circumstances.  Projects should be ported to the NEW
+  behavior and not rely on setting a policy to OLD.
+
+
+-- cotire 1.8.0 loaded.
+-- Detected version of GNU GCC: 54 (504)
+-- Found OpenMP_C: -fopenmp (found version "4.0") 
+-- Found OpenMP_CXX: -fopenmp (found version "4.0") 
+-- Found OpenMP: TRUE (found version "4.0")  
+-- Found OpenGL: /usr/lib/x86_64-linux-gnu/libGL.so   
+CUDA_TOOLKIT_ROOT_DIR not found or specified
+-- Could NOT find CUDA (missing: CUDA_TOOLKIT_ROOT_DIR CUDA_NVCC_EXECUTABLE CUDA_INCLUDE_DIRS CUDA_CUDART_LIBRARY) 
+-- Can't find CUDA. Continuing without it.
+-- WARNING: BREAKPAD was not found: Please specify BREAKPAD directory using BREAKPAD_ROOT env. variable
+-- Can't find BreakPad. Continuing without it.
+-- Boost version: 1.58.0
+-- Found the following Boost libraries:
+--   iostreams
+--   program_options
+--   system
+--   serialization
+--   regex
+-- Eigen 3.2.10 found (include: /usr/local/include/eigen3)
+-- OpenCV 2.4.9.1 found (include: /usr/include/opencv;/usr/include)
+-- CGAL 4.7 found (include: /usr/include)
+CMake Warning (dev) at libs/MVS/CMakeLists.txt:9 (FIND_PACKAGE):
+  Policy CMP0074 is not set: find_package uses <PackageName>_ROOT variables.
+  Run "cmake --help-policy CMP0074" for policy details.  Use the cmake_policy
+  command to set the policy and suppress this warning.
+
+  CMake variable VCG_ROOT is set to:
+
+    /home/xieyang/workspace/openMVS/vcglib
+
+  For compatibility, CMake is ignoring the variable.
+This warning is for project developers.  Use -Wno-dev to suppress it.
+
+-- VCG  found (include: /home/xieyang/workspace/openMVS/vcglib)
+-- CXX target MVS cotired without unity build.
+-- GLEW  found (include: /usr/include)
+-- GLFW3 3.1.2 found (include: /usr/include/libdrm)
+-- CXX target Viewer cotired without unity build.
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/xieyang/workspace/openMVS/MyBuild
+
+Problems were encountered while collecting compiler information:
+	cc1plus: fatal error: /home/xieyang/workspace/openMVS/MyBuild/apps/Viewer/cotire/Viewer_CXX_prefix.hxx: No such file or directory
+	cc1plus: fatal error: /home/xieyang/workspace/openMVS/MyBuild/libs/Common/cotire/Common_CXX_prefix.hxx: No such file or directory
+	cc1plus: fatal error: /home/xieyang/workspace/openMVS/MyBuild/libs/IO/cotire/IO_CXX_prefix.hxx: No such file or directory
+	cc1plus: fatal error: /home/xieyang/workspace/openMVS/MyBuild/libs/Math/cotire/Math_CXX_prefix.hxx: No such file or directory
+	cc1plus: fatal error: /home/xieyang/workspace/openMVS/MyBuild/libs/MVS/cotire/MVS_CXX_prefix.hxx: No such file or directory
