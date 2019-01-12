@@ -105,7 +105,7 @@ if(OpenMVS_USE_BREAKPAD)
 	endif()
 endif()
 
-FIND_PACKAGE(Boost ${SYSTEM_PACKAGE_REQUIRED} COMPONENTS iostreams program_options system serialization)
+FIND_PACKAGE(Boost ${SYSTEM_PACKAGE_REQUIRED} COMPONENTS iostreams program_options system serialization date_time)
 if(Boost_FOUND)
 	INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
 	ADD_DEFINITIONS(${Boost_DEFINITIONS} -D_USE_BOOST)
@@ -129,6 +129,11 @@ if(OpenCV_FOUND)
 else()
 	MESSAGE("-- Can't find OpenCV. Please specify OpenCV directory using OpenCV_DIR variable")
 endif()
+
+FIND_PACKAGE(CURL REQUIRED)
+INCLUDE_DIRECTORIES(${CURL_INCLUDE_DIRS})
+LINK_DIRECTORIES(${CURL_LIBRARY_DIRS})
+MESSAGE(STATUS "cURL ${CURL_VERSION} found (include: ${CURL_INCLUDE_DIRS})")
 
 # Set defines
 SET(OpenMVS_DEFINITIONS "")

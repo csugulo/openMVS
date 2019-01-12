@@ -36,6 +36,9 @@
 #include <boost/graph/adjacency_list.hpp>
 #include <boost/graph/filtered_graph.hpp>
 #include <boost/graph/connected_components.hpp>
+#include <boost/date_time/posix_time/posix_time.hpp>
+#include <curl/curl.h>
+#include <regex>
 
 using namespace MVS;
 
@@ -375,7 +378,7 @@ struct MeshTexture {
     typedef	cList<EXIFInfo> EXIFArr;
 
     // used to store images' sun direction
-    typedef cList<Vec3f> SunDirectionArr;
+    typedef cList<Vec2f> SunDirectionArr;
 
 
 public:
@@ -2024,13 +2027,78 @@ bool MeshTexture::LoadEXIFs()
 	return true;
 }
 
+size_t writeFunction(void *ptr, size_t size, size_t nmemb, std::string* data) {
+    data->append((char*) ptr, size * nmemb);
+    return size * nmemb;
+}
+
+bool MeshTexture::GetSunDirections()
+{
+    using namespace boost::posix_time;
+    using namespace std;
+	typedef boost::posix_time::ptime Time;
+	sunDirections.resize(images.size());
+
+	#pragma omp parallel for
+    for(size_t exifIdx = 0; exifIdx < exifs.size(); ++exifIdx)
+    {
+        EXIFInfo & exif = exifs[exifIdx];
+        double latitude =  exif.GeoLocation.Latitude;
+        double longitude = exif.GeoLocation.Longitude;
+        String strYear = exif.DateTime.substr(0,4);
+        String strMonth = exif.DateTime.substr(5, 2);
+        String strDay = exif.DateTime.substr(8,2);
+        String strHour = exif.DateTime.substr(11,2);
+        String strMinute = exif.DateTime.substr(14,2);
+        String strQueryUrl = "https://rechneronline.de/sun-position/sp.php?k=" +
+                std::to_string(latitude) + "x" +
+                std::to_string(longitude) + "&d=" +
+                strDay + "&m=" +
+                strMonth + "&y=" +
+                strYear + "&h=" +
+                strHour + "&n=" +
+                strMinute + "&z=-480";
+
+        auto curl = curl_easy_init();
+        string httpRes;
+        curl_easy_setopt(curl, CURLOPT_URL, strQueryUrl.c_str());
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeFunction);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &httpRes);
+        curl_easy_perform(curl);
+        curl_easy_cleanup(curl);
+        curl = NULL;
+
+        smatch result;
+        regex pattern("[\\s\\S]*Height above horizon: <b>(.*)&deg;</b><br>Direction: <b>(.*)&deg;, W</b></body>[\\s\\S]*");
+
+        double horizon, direction;
+
+        if(regex_match(httpRes, result, pattern))
+        {
+            horizon = std::atof(result.str(1).c_str());
+            direction = std::atof(result.str(2).c_str());
+            Vec2f sunDirection;
+            sunDirection[0] = horizon;
+            sunDirection[1] = direction;
+            sunDirections[exifIdx] = sunDirection;
+        }
+
+    }
+    return true;
+}
+
 // texture mesh
 bool Scene::TextureMesh(String strOriginImagesFolder, unsigned nResolutionLevel, unsigned nMinResolution, float fOutlierThreshold, float fRatioDataSmoothness, bool bGlobalSeamLeveling, bool bLocalSeamLeveling, unsigned nTextureSizeMultiple, unsigned nRectPackingHeuristic, Pixel8U colEmpty)
 {
 	MeshTexture texture(*this,strOriginImagesFolder, nResolutionLevel, nMinResolution);
 
-	if(!texture.LoadEXIFs()) return false;
-
+	// Load EXIF information
+	{
+		TD_TIMER_STARTD();
+		if (!texture.LoadEXIFs()) return false;
+		if (!texture.GetSunDirections()) return false;
+		DEBUG_EXTRA("get sun direction to each image completed: %u images (%s)", images.GetSize(), TD_TIMER_GET_FMT().c_str());
+	}
 	// assign the best view to each face
 	{
 		TD_TIMER_STARTD();
