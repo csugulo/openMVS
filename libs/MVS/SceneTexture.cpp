@@ -39,6 +39,7 @@
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <curl/curl.h>
 #include <regex>
+#include <unordered_map>
 
 using namespace MVS;
 
@@ -378,8 +379,13 @@ struct MeshTexture {
     typedef	cList<EXIFInfo> EXIFArr;
 
     // used to store images' sun direction
-    typedef cList<Vec2f> SunDirectionArr;
+    typedef Eigen::Vector2d AltitudeAzimuth;
+    typedef cList<AltitudeAzimuth> AltitudeAzimuthArr;
 
+    typedef Eigen::Vector3d Direction;
+    typedef cList<Direction> DirectionArr;
+
+    typedef cList<FaceMap> FaceMapArr;
 
 public:
 	MeshTexture(Scene& _scene, String strOriginImagesFolder, unsigned _nResolutionLevel=0, unsigned _nMinResolution=640);
@@ -401,8 +407,11 @@ public:
 	void GenerateTexture(bool bGlobalSeamLeveling, bool bLocalSeamLeveling, unsigned nTextureSizeMultiple, unsigned nRectPackingHeuristic, Pixel8U colEmpty);
 
 	bool LoadEXIFs();
-
 	bool GetSunDirections();
+    bool LoadImages();
+	bool CreateFaceMaps();
+	bool EstimateNorthDirection();
+
 
 	template <typename PIXEL>
 	static inline PIXEL RGB2YCBCR(const PIXEL& v) {
@@ -460,7 +469,10 @@ public:
     // used for recovery surface appearance
     String strOriginImagesFolder;
     EXIFArr exifs;
-    SunDirectionArr sunDirections;
+    AltitudeAzimuthArr sunAltitudeAzimuths;
+    FaceMapArr faceMaps;
+    Direction north;
+
 };
 
 MeshTexture::MeshTexture(Scene& _scene, String strOriginImagesFolder, unsigned _nResolutionLevel, unsigned _nMinResolution)
@@ -491,6 +503,8 @@ void MeshTexture::ListVertexFaces()
 	scene.mesh.EmptyExtra();
 	scene.mesh.ListIncidenteFaces();
 	scene.mesh.ListBoundaryVertices();
+	scene.mesh.ComputeNormalVertices();
+	scene.mesh.ComputeNormalFaces();
 }
 
 // extract array of faces viewed by each image
@@ -846,9 +860,6 @@ bool MeshTexture::FaceOutlierDetection(FaceDataArr& faceDatas, float thOutlier) 
 
 bool MeshTexture::FaceViewSelection(float fOutlierThreshold, float fRatioDataSmoothness)
 {
-	// extract array of triangles incident to each vertex
-	ListVertexFaces();
-
 	// create texture patches
 	{
 		// list all views for each face
@@ -2037,7 +2048,7 @@ bool MeshTexture::GetSunDirections()
     using namespace boost::posix_time;
     using namespace std;
 	typedef boost::posix_time::ptime Time;
-	sunDirections.resize(images.size());
+    sunAltitudeAzimuths.resize(images.size());
 
 	#pragma omp parallel for
     for(size_t exifIdx = 0; exifIdx < exifs.size(); ++exifIdx)
@@ -2077,28 +2088,185 @@ bool MeshTexture::GetSunDirections()
         {
             horizon = std::atof(result.str(1).c_str());
             direction = std::atof(result.str(2).c_str());
-            Vec2f sunDirection;
-            sunDirection[0] = horizon;
-            sunDirection[1] = direction;
-            sunDirections[exifIdx] = sunDirection;
+            AltitudeAzimuth altitudeAzimuth;
+            altitudeAzimuth[0] = horizon;
+            altitudeAzimuth[1] = direction;
+            sunAltitudeAzimuths[exifIdx] = altitudeAzimuth;
         }
 
     }
     return true;
 }
 
+bool MeshTexture::LoadImages()
+{
+    FOREACH(idxView, images)
+    {
+        Image& imageData = images[idxView];
+        unsigned level(nResolutionLevel);
+        const unsigned imageSize(imageData.RecomputeMaxResolution(level, nMinResolution));
+        if ((imageData.image.empty() || MAXF(imageData.width,imageData.height) != imageSize) && !imageData.ReloadImage(imageSize)) {
+            return false;
+        }
+        imageData.UpdateCamera(scene.platforms);
+    }
+	return true;
+}
+
+bool MeshTexture::CreateFaceMaps()
+{
+    typedef std::unordered_set<FIndex> CameraFaces;
+    struct FacesInserter {
+        FacesInserter(const Mesh::VertexFacesArr& _vertexFaces, CameraFaces& _cameraFaces)
+                : vertexFaces(_vertexFaces), cameraFaces(_cameraFaces) {}
+        inline void operator() (IDX idxVertex) {
+            const Mesh::FaceIdxArr& vertexTris = vertexFaces[idxVertex];
+            FOREACHPTR(pTri, vertexTris)
+                cameraFaces.emplace(*pTri);
+        }
+        inline void operator() (const IDX* idices, size_t size) {
+            FOREACHRAWPTR(pIdxVertex, idices, size)
+                operator()(*pIdxVertex);
+        }
+        const Mesh::VertexFacesArr& vertexFaces;
+        CameraFaces& cameraFaces;
+    };
+    typedef TOctree<Mesh::VertexArr,float,3> Octree;
+    const Octree octree(vertices);
+	faceMaps.resize(images.size());
+    FOREACH(idxView, images)
+    {
+        Image & imageData = images[idxView];
+        FaceMap faceMap;
+        DepthMap depthMap;
+        CameraFaces cameraFaces;
+        FacesInserter inserter(vertexFaces, cameraFaces);
+        typedef TFrustum<float,5> Frustum;
+        const Frustum frustum(Frustum::MATRIX3x4(((PMatrix::CEMatMap)imageData.camera.P).cast<float>()), (float)imageData.width, (float)imageData.height);
+        octree.Traverse(frustum, inserter);
+        faceMap.create(imageData.height, imageData.width);
+        depthMap.create(imageData.height, imageData.width);
+        RasterMesh rasterer(vertices, imageData.camera, depthMap, faceMap);
+        rasterer.Clear();
+        for (auto idxFace : cameraFaces) {
+            const Face& facet = faces[idxFace];
+            rasterer.idxFace = idxFace;
+            rasterer.Project(facet);
+        }
+        faceMaps[idxView] = faceMap;
+    }
+	return true;
+}
+
+inline MeshTexture::Direction altitudeAzimuth2direction
+        (MeshTexture::AltitudeAzimuth altiAzi)
+{
+    float altitude = altiAzi[0] / (180.0 * PI);
+    float azimuth = altiAzi[1] / (180.0 * PI);
+    float z = sin(altitude);
+    float x = cos(altitude) * sin(azimuth);
+    float y = cos(altitude) * cos(azimuth);
+    return MeshTexture::Direction(x,y,z);
+}
+
+bool MeshTexture::EstimateNorthDirection()
+{
+    typedef std::unordered_map<FIndex, float> FaceNdotLs;
+	Direction bestNorth;
+    float bestNorthScore = 0;
+    for(int altitude = -89; altitude < 90; ++altitude)
+    {
+        for(int azimuth = 0; azimuth < 360; ++azimuth)
+        {
+            float northScore = 0;
+            Direction north = altitudeAzimuth2direction(AltitudeAzimuth(altitude, azimuth)).normalized();
+            // scene coordinate to geographical coordinates
+            float angle = acos(Direction(0,1,0).dot(north));
+            Direction axis = Direction(0,1,0).cross(north).normalized();
+            Eigen::Matrix3d rotation;
+            if(angle == 0) rotation = Eigen::Matrix3d::Identity();
+            else rotation = Eigen::AngleAxisd(angle, axis).matrix();
+
+            #pragma omp parallel for
+            for(size_t idxView = 0; idxView < images.size(); ++idxView)
+            {
+                float imageScore = 0;
+                AltitudeAzimuth & altitudeAzimuthSun = sunAltitudeAzimuths[idxView];
+                Direction directionSun = altitudeAzimuth2direction(altitudeAzimuthSun);
+                directionSun = rotation * directionSun;
+                FaceNdotLs faceNdotLs;
+                FOREACH(idxFace, faces)
+                {
+                    Normal & normal = scene.mesh.faceNormals[idxFace];
+                    normal = normalized(normal);
+                    float ndotl = normal[0] * directionSun[0]
+                            + normal[1] * directionSun[1]
+                            + normal[2] * directionSun[2];
+                    if(ndotl > 0) faceNdotLs[idxFace] = ndotl;
+                }
+
+                FaceMap & faceMap = faceMaps[idxView];
+                Image & imageData = images[idxView];
+                int nPixelSeeSun = 0;
+                for(int j = 0; j < faceMap.rows; ++j)
+                {
+                    for(int i = 0; i < faceMap.cols; ++i)
+                    {
+                        const FIndex& idxFace = faceMap(j,i);
+                        if (idxFace != NO_ID && faceNdotLs[idxFace] != 0)
+                        {
+                            nPixelSeeSun++;
+                            const Pixel8U & pixel = imageData.image(j,i);
+                            float illumination = ((float)pixel.r + (float)pixel.g + (float)pixel.b) / 3.0f;
+                            imageScore += illumination * faceNdotLs[idxFace];
+                        }
+                    }
+                }
+                imageScore /= nPixelSeeSun;
+                LOG("north:[%f,%f,%f],image:%d,score:%d",
+                    north[0], north[1],north[2],
+                    idxView, imageScore);
+                northScore += imageScore;
+            }
+
+            LOG("---North:[%f,%f,%f], score:%f", north[0], north[1],north[2], northScore);
+            if(northScore > bestNorthScore)
+            {
+                bestNorthScore = northScore;
+                bestNorth = north;
+            }
+
+        }
+    }
+
+    north = bestNorth;
+    LOG("Best north:[%f,%f,%f]",north[0],north[1],north[2]);
+}
+
+
 // texture mesh
 bool Scene::TextureMesh(String strOriginImagesFolder, unsigned nResolutionLevel, unsigned nMinResolution, float fOutlierThreshold, float fRatioDataSmoothness, bool bGlobalSeamLeveling, bool bLocalSeamLeveling, unsigned nTextureSizeMultiple, unsigned nRectPackingHeuristic, Pixel8U colEmpty)
 {
 	MeshTexture texture(*this,strOriginImagesFolder, nResolutionLevel, nMinResolution);
 
-	// Load EXIF information
+	// preparation
 	{
 		TD_TIMER_STARTD();
+        texture.ListVertexFaces();
 		if (!texture.LoadEXIFs()) return false;
 		if (!texture.GetSunDirections()) return false;
-		DEBUG_EXTRA("get sun direction to each image completed: %u images (%s)", images.GetSize(), TD_TIMER_GET_FMT().c_str());
+		if (!texture.LoadImages()) return false;
+		if (!texture.CreateFaceMaps()) return false;
+		DEBUG_EXTRA("preparation completed (%s)", TD_TIMER_GET_FMT().c_str());
 	}
+
+	// estimate north direction in scene
+    {
+        TD_TIMER_STARTD();
+        if(!texture.EstimateNorthDirection()) return false;
+        DEBUG_EXTRA("estimation completed (%s)", TD_TIMER_GET_FMT().c_str());
+    }
+
 	// assign the best view to each face
 	{
 		TD_TIMER_STARTD();
