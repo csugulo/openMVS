@@ -387,6 +387,8 @@ struct MeshTexture {
 
     typedef cList<FaceMap> FaceMapArr;
 
+    typedef Eigen::Matrix4d TransformMatrix;
+
 public:
 	MeshTexture(Scene& _scene, String strOriginImagesFolder, unsigned _nResolutionLevel=0, unsigned _nMinResolution=640);
 	~MeshTexture();
@@ -410,7 +412,7 @@ public:
 	bool GetSunDirections();
     bool LoadImages();
 	bool CreateFaceMaps();
-	bool EstimateNorthDirection();
+	bool EstimateGeoToSceneTransform();
 
 
 	template <typename PIXEL>
@@ -471,7 +473,7 @@ public:
     EXIFArr exifs;
     AltitudeAzimuthArr sunAltitudeAzimuths;
     FaceMapArr faceMaps;
-    Direction north;
+	TransformMatrix geoToScene;
 
 };
 
@@ -2154,6 +2156,7 @@ bool MeshTexture::CreateFaceMaps()
             rasterer.Project(facet);
         }
         faceMaps[idxView] = faceMap;
+        LOG("Image[%d] can see %d faces in mesh",idxView, cameraFaces.size());
     }
 	return true;
 }
@@ -2169,78 +2172,19 @@ inline MeshTexture::Direction altitudeAzimuth2direction
     return MeshTexture::Direction(x,y,z);
 }
 
-bool MeshTexture::EstimateNorthDirection()
+bool MeshTexture::EstimateGeoToSceneTransform()
 {
-    typedef std::unordered_map<FIndex, float> FaceNdotLs;
-	Direction bestNorth;
-    float bestNorthScore = 0;
-    for(int altitude = -89; altitude < 90; ++altitude)
-    {
-        for(int azimuth = 0; azimuth < 360; ++azimuth)
-        {
-            float northScore = 0;
-            Direction north = altitudeAzimuth2direction(AltitudeAzimuth(altitude, azimuth)).normalized();
-            // scene coordinate to geographical coordinates
-            float angle = acos(Direction(0,1,0).dot(north));
-            Direction axis = Direction(0,1,0).cross(north).normalized();
-            Eigen::Matrix3d rotation;
-            if(angle == 0) rotation = Eigen::Matrix3d::Identity();
-            else rotation = Eigen::AngleAxisd(angle, axis).matrix();
-
-            #pragma omp parallel for
-            for(size_t idxView = 0; idxView < images.size(); ++idxView)
-            {
-                float imageScore = 0;
-                AltitudeAzimuth & altitudeAzimuthSun = sunAltitudeAzimuths[idxView];
-                Direction directionSun = altitudeAzimuth2direction(altitudeAzimuthSun);
-                directionSun = rotation * directionSun;
-                FaceNdotLs faceNdotLs;
-                FOREACH(idxFace, faces)
-                {
-                    Normal & normal = scene.mesh.faceNormals[idxFace];
-                    normal = normalized(normal);
-                    float ndotl = normal[0] * directionSun[0]
-                            + normal[1] * directionSun[1]
-                            + normal[2] * directionSun[2];
-                    if(ndotl > 0) faceNdotLs[idxFace] = ndotl;
-                }
-
-                FaceMap & faceMap = faceMaps[idxView];
-                Image & imageData = images[idxView];
-                int nPixelSeeSun = 0;
-                for(int j = 0; j < faceMap.rows; ++j)
-                {
-                    for(int i = 0; i < faceMap.cols; ++i)
-                    {
-                        const FIndex& idxFace = faceMap(j,i);
-                        if (idxFace != NO_ID && faceNdotLs[idxFace] != 0)
-                        {
-                            nPixelSeeSun++;
-                            const Pixel8U & pixel = imageData.image(j,i);
-                            float illumination = ((float)pixel.r + (float)pixel.g + (float)pixel.b) / 3.0f;
-                            imageScore += illumination * faceNdotLs[idxFace];
-                        }
-                    }
-                }
-                imageScore /= nPixelSeeSun;
-                LOG("north:[%f,%f,%f],image:%d,score:%d",
-                    north[0], north[1],north[2],
-                    idxView, imageScore);
-                northScore += imageScore;
-            }
-
-            LOG("---North:[%f,%f,%f], score:%f", north[0], north[1],north[2], northScore);
-            if(northScore > bestNorthScore)
-            {
-                bestNorthScore = northScore;
-                bestNorth = north;
-            }
-
-        }
-    }
-
-    north = bestNorth;
-    LOG("Best north:[%f,%f,%f]",north[0],north[1],north[2]);
+	FOREACH(idxView, images)
+	{
+		LOG("%f %f %f %f %f %f",
+				exifs[idxView].GeoLocation.Latitude,
+				exifs[idxView].GeoLocation.Longitude,
+				exifs[idxView].GeoLocation.Altitude,
+				images[idxView].camera.C[0],
+				images[idxView].camera.C[1],
+				images[idxView].camera.C[2]);
+	}
+	return true;
 }
 
 
@@ -2260,10 +2204,10 @@ bool Scene::TextureMesh(String strOriginImagesFolder, unsigned nResolutionLevel,
 		DEBUG_EXTRA("preparation completed (%s)", TD_TIMER_GET_FMT().c_str());
 	}
 
-	// estimate north direction in scene
+	// estimate transformation from geographic coordinates to scene coordinates
     {
         TD_TIMER_STARTD();
-        if(!texture.EstimateNorthDirection()) return false;
+        if(!texture.EstimateGeoToSceneTransform()) return false;
         DEBUG_EXTRA("estimation completed (%s)", TD_TIMER_GET_FMT().c_str());
     }
 
